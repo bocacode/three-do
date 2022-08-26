@@ -14,8 +14,9 @@ export default function TodoList({ tasklist, setTasklist }) {
   return (
     <ul>
       {tasklist.map(task => (
-        <li key={task.id}>{task.task}</li>
-      ))}
+          <li key={task.id}>{task.task}</li>
+        )
+      )}
     </ul>
   )
 }
