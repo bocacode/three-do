@@ -11,7 +11,6 @@ function App() {
   return (
     <Layout className="layout">
       <Header>
-        <div className="logo" />
         <Menu
           theme="dark"
           mode="horizontal"

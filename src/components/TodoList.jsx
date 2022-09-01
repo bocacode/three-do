@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { List, Switch, Alert } from 'antd';
+import { List, Alert } from 'antd';
+import TodoListCard from './TodoListCard';
 
 export default function TodoList({ tasklist, setTasklist }) {
   const [loading, setLoading] = useState(true);
@@ -14,13 +15,10 @@ export default function TodoList({ tasklist, setTasklist }) {
         setError('');
       })
       .catch(err => {
-        setError(err);
+        setError(err.message);
         setLoading(false);
       })
-  }, [setTasklist, setLoading]);
-  // if (!tasklist) {
-  //   return <h2>No tasks to complete!</h2>
-  // }
+  }, [setTasklist, setLoading, setError]);
   return (
     <>
       {error && <Alert
@@ -34,12 +32,12 @@ export default function TodoList({ tasklist, setTasklist }) {
           dataSource={tasklist}
           loading={loading}
           renderItem={(item) => (
-            <List.Item key={item.id}>
-              <List.Item.Meta
-                avatar={<Switch checked={item.done} />}
-                title={<p>{item.task}</p>}
-              />
-            </List.Item>
+            <TodoListCard
+              key={item.id}
+              item={item}
+              setLoading={setLoading}
+              setTasklist={setTasklist}
+              setError={setError} />
           )}
         />
       </div>
