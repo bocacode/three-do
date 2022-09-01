@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import TodoList from './components/TodoList';
 import AddTask from './components/AddTask';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 import './App.css';
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
   const [tasklist, setTasklist] = useState();
+  const [token, setToken] = useState();
+  const [isUser, setIsUser] = useState(false);
+  useEffect(()=>{
+    if(localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'))
+    }
+  },[setToken]);
   return (
     <Layout className="layout">
       <Header>
@@ -27,8 +36,13 @@ function App() {
       >
         <div className="site-layout-content">
           <h1>Three-do</h1>
-          <TodoList tasklist={tasklist} setTasklist={setTasklist} />
-          <AddTask setTasklist={setTasklist} />
+          <TodoList token={token} tasklist={tasklist} setTasklist={setTasklist} />
+          <AddTask token={token} setTasklist={setTasklist} />
+          {!token ?
+            isUser 
+              ? <Login setIsUser={setIsUser} setToken={setToken} />
+              : <SignUp setIsUser={setIsUser} setToken={setToken} />
+          : null }
         </div>
       </Content>
       <Footer

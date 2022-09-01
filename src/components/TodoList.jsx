@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 import { List, Alert } from 'antd';
 import TodoListCard from './TodoListCard';
 
-export default function TodoList({ tasklist, setTasklist }) {
+export default function TodoList({ tasklist, setTasklist, token }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   // call the api and use setTasklist to fill in state...
   useEffect(() => {
-    fetch('https://three-do-api-bc.web.app/tasks')
+    fetch('https://three-do-api-bc.web.app/tasks', {
+    // fetch('http://localhost:5555/tasks', {
+      headers: {
+        'Authorization': token,
+      }
+    })
       .then(results => results.json())
       .then(tasks => {
         setTasklist(tasks);
@@ -18,7 +23,7 @@ export default function TodoList({ tasklist, setTasklist }) {
         setError(err.message);
         setLoading(false);
       })
-  }, [setTasklist, setLoading, setError]);
+  }, [token, setTasklist, setLoading, setError]);
   return (
     <>
       {error && <Alert
@@ -35,6 +40,7 @@ export default function TodoList({ tasklist, setTasklist }) {
             <TodoListCard
               key={item.id}
               item={item}
+              token={token}
               setLoading={setLoading}
               setTasklist={setTasklist}
               setError={setError} />
