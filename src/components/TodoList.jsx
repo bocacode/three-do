@@ -26,7 +26,7 @@ export default function TodoList({ tasklist, setTasklist, token }) {
   }, [token, setTasklist, setLoading, setError]);
   return (
     <>
-      {error && <Alert
+      {(error && token) && <Alert
         message="Error"
         description={error}
         type="error"
