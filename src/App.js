@@ -50,7 +50,7 @@ function App() {
           textAlign: 'center',
         }}
       >
-        Three-Do ©2022 Created by Boca Code
+        Three-Do ©2022 Created by Mason Madaras
       </Footer>
     </Layout>
   );

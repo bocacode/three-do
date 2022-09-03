@@ -5,7 +5,7 @@ export default function TodoListCard({ token, item, setError, setLoading, setTas
     // make a patch request to API
     setLoading(true);
     const body = { done: !item.done };
-    fetch(`https://three-do-api-bc.web.app/tasks/${item.id}`, {
+    fetch(`https://three-do-api-mtm.web.app/tasks/${item.id}`, {
     // fetch(`http://localhost:5555/tasks/${item.id}`, {
       method: 'PATCH',
       headers: {

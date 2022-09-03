@@ -7,7 +7,7 @@ export default function TodoList({ tasklist, setTasklist, token }) {
   const [error, setError] = useState();
   // call the api and use setTasklist to fill in state...
   useEffect(() => {
-    fetch('https://three-do-api-bc.web.app/tasks', {
+    fetch('https://three-do-api-mtm.web.app/tasks', {
     // fetch('http://localhost:5555/tasks', {
       headers: {
         'Authorization': token,
@@ -38,9 +38,9 @@ export default function TodoList({ tasklist, setTasklist, token }) {
           loading={loading}
           renderItem={(item) => (
             <TodoListCard
-              key={item.id}
+              // key={item.id}
               item={item}
-              token={token}
+              // token={token}
               setLoading={setLoading}
               setTasklist={setTasklist}
               setError={setError} />

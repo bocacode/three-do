@@ -3,7 +3,7 @@ import { Modal, Form, Input, Button } from 'antd';
 export default function SignUp({ setToken, setIsUser }) {
   const handleSignUp = ({ email, password }) => {
     // post request to api/users
-    fetch('https://three-do-api-bc.web.app/users', {
+    fetch('https://three-do-api-mtm.web.app/users', {
     // fetch('http://localhost:5555/users', {
       method: 'POST',
       headers: {

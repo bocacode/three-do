@@ -5,7 +5,7 @@ const { Search } = Input;
 export default function AddTask({ setTasklist, token }) {
   const [task, setTask] = useState('');
   const addTask = () => {
-    fetch('https://three-do-api-bc.web.app/tasks', {
+    fetch('https://three-do-api-mtm.web.app/tasks', {
     // fetch('http://localhost:5555/tasks', {
       method: 'POST',
       mode: 'cors',
